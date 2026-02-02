@@ -5,12 +5,11 @@
 > Memory-optimized framework for ethical security analysis of Android applications with integrated research capabilities.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![License](https://img.shields.io/github/license/TheFoolByte/XL-Research-Core.v2)
-![GitHub stars](https://img.shields.io/github/stars/TheFoolByte/XL-Research-Core.v2)
-![GitHub forks](https://img.shields.io/github/forks/TheFoolByte/XL-Research-Core.v2)
-![GitHub issues](https://img.shields.io/github/issues/TheFoolByte/XL-Research-Core.v2)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Version](https://img.shields.io/badge/Version-2.1.0-blue.svg)
 ![Memory](https://img.shields.io/badge/Memory-8GB%20Optimized-orange.svg)
 ![Status](https://img.shields.io/badge/Status-Production-brightgreen.svg)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20Mac-lightgrey.svg)
 
 ---
 
