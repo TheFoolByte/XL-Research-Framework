@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ name }} - ByteDroid Report</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle" title="Toggle theme">
+  <span class="icon-sun">☀️</span>
+  <span class="icon-moon">🌙</span>
+</button>
+
+<div class="scan-line"></div>
+
+<div class="container" style="max-width: 900px;">
+  
+  <a href="/reports" class="back-link">
+    ← Back to Reports
+  </a>
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">📄</div>
+      <h1>Analysis Report</h1>
+    </div>
+    <p class="subtitle">{{ name }}</p>
+  </header>
+
+  <div class="card">
+    <pre class="report-view">{{ content }}</pre>
+  </div>
+
+  <footer class="footer">
+    ByteDroid Framework • Security Analysis Tool
+  </footer>
+
+</div>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+</script>
+
+</body>
+</html>

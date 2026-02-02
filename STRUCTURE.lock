@@ -1,0 +1,91 @@
+# XL Research Framework - Structure Lock
+# Version: 2.1.0
+# Generated: 2026-02-01
+# 
+# This file defines the required project structure.
+# Used by scripts/health_check.py to validate integrity.
+# DO NOT MODIFY unless structure changes intentionally.
+
+[metadata]
+version = "2.1.0"
+last_updated = "2026-02-01"
+checksum_algorithm = "sha256"
+
+[required_packages]
+core = true
+modules = true
+profiles = true
+research = true
+extractors = true
+reporters = true
+tests = true
+scripts = true
+
+[required_files.core]
+__init__.py = true
+engine.py = true
+config.py = true
+context.py = true
+logger.py = true
+lazy_loader.py = true
+memory_optimizer.py = true
+exceptions.py = true
+
+[required_files.modules]
+__init__.py = true
+base.py = true
+
+[required_files.modules.api]
+__init__.py = true
+analyzer.py = true
+
+[required_files.modules.auth]
+__init__.py = true
+analyzer.py = true
+
+[required_files.modules.config]
+__init__.py = true
+analyzer.py = true
+
+[required_files.modules.endpoint]
+__init__.py = true
+analyzer.py = true
+
+[required_files.modules.family]
+__init__.py = true
+analyzer.py = true
+
+[required_files.profiles]
+__init__.py = true
+base.py = true
+light.py = true
+xl.py = true
+full.py = true
+
+[required_files.research]
+__init__.py = true
+adapter.py = true
+auth.py = true
+client.py = true
+signature.py = true
+
+[required_files.research.modules]
+__init__.py = true
+analyzer.py = true
+
+[required_files.research.utils]
+__init__.py = true
+
+[required_files.extractors]
+__init__.py = true
+partial_jadx.py = true
+manifest_parser.py = true
+
+[required_files.reporters]
+__init__.py = true
+report_generator.py = true
+
+[required_files.root]
+cli.py = true
+requirements.txt = true
+config.yaml = true

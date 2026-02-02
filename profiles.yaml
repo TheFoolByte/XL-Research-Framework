@@ -1,0 +1,57 @@
+# XL Research Framework v2 - Execution Profiles
+
+profiles:
+  quick:
+    description: "Fast scan, minimal memory usage"
+    max_memory_mb: 512
+    max_files: 1000
+    file_types:
+      - ".json"
+      - ".xml"
+    analyzers:
+      - "api"
+      - "endpoint"
+    timeout_seconds: 120
+
+  standard:
+    description: "Balanced analysis for most use cases"
+    max_memory_mb: 1024
+    max_files: 5000
+    file_types:
+      - ".java"
+      - ".kt"
+      - ".xml"
+      - ".json"
+      - ".properties"
+    analyzers:
+      - "api"
+      - "endpoint"
+      - "auth"
+      - "config"
+    timeout_seconds: 300
+
+  deep:
+    description: "Full research mode - comprehensive analysis"
+    max_memory_mb: 2048
+    max_files: null # unlimited
+    file_types:
+      - "*" # all files
+    analyzers:
+      - "all"
+    timeout_seconds: 600
+
+  xl-focused:
+    description: "XL ecosystem focused analysis"
+    max_memory_mb: 1024
+    max_files: 5000
+    file_types:
+      - ".java"
+      - ".kt"
+      - ".json"
+      - ".xml"
+    analyzers:
+      - "api"
+      - "endpoint"
+      - "family"
+      - "config"
+    timeout_seconds: 300

@@ -1,0 +1,49 @@
+# XL Research Framework - Pre-commit Configuration
+# See https://pre-commit.com for more information
+
+repos:
+  # Local hooks (run project-specific checks)
+  - repo: local
+    hooks:
+      # Health check - validate project structure
+      - id: health-check
+        name: Project Health Check
+        entry: python scripts/health_check.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+
+      # Import check - ensure no circular dependencies
+      - id: import-check
+        name: Import Check
+        entry: python -c "import sys; sys.path.insert(0, '.'); from core.engine import Engine; from research import ResearchAdapter; from modules.base import BaseModule; print('OK')"
+        language: system
+        pass_filenames: false
+        stages: [commit]
+
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^(output/|\.venv/)
+      - id: end-of-file-fixer
+        exclude: ^(output/|\.venv/)
+      - id: check-yaml
+      - id: check-json
+        exclude: ^output/
+      - id: check-added-large-files
+        args: ["--maxkb=1000"]
+      - id: check-merge-conflict
+
+  # Python-specific hooks (optional)
+  # - repo: https://github.com/psf/black
+  #   rev: 24.1.0
+  #   hooks:
+  #     - id: black
+  #       language_version: python3
+
+# Configuration
+default_stages: [commit]
+fail_fast: true

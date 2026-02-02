@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - ByteDroid</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle" title="Toggle theme">
+  <span class="icon-sun">☀️</span>
+  <span class="icon-moon">🌙</span>
+</button>
+
+<div class="scan-line"></div>
+
+<!-- Notification Toast -->
+<div class="notification" id="notification">
+  <span class="notification-icon">✅</span>
+  <span class="notification-text">Analysis complete!</span>
+</div>
+
+<div class="container wide">
+  
+  <a href="/" class="back-link">
+    ← Back to Scanner
+  </a>
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">📊</div>
+      <h1>Scan Reports</h1>
+    </div>
+    <p class="subtitle">View your APK analysis results</p>
+  </header>
+
+  <!-- Mini Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-icon">📦</span>
+      <div class="stat-value">{{ stats.total }}</div>
+      <div class="stat-label">Total Scans</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">⚠️</span>
+      <div class="stat-value">{{ stats.threats }}</div>
+      <div class="stat-label">Threats Found</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">✅</span>
+      <div class="stat-value">{{ stats.safe }}</div>
+      <div class="stat-label">Safe APKs</div>
+    </div>
+  </div>
+
+  <div class="card">
+    {% if files %}
+    <ul class="reports-list">
+      {% for f in files %}
+      <a href="/view/{{f}}" class="report-item">
+        <div class="report-icon">📄</div>
+        <div class="report-info">
+          <div class="report-name">{{ f }}</div>
+          <div class="report-meta">Analysis Report</div>
+        </div>
+        <span class="report-arrow">→</span>
+      </a>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">📭</div>
+      <p class="empty-text">No reports yet. Scan an APK to get started!</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <footer class="footer">
+    ByteDroid Framework • Security Analysis Tool
+  </footer>
+
+</div>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+
+  // Notification
+  function showNotification(message, isError = false) {
+    const notif = document.getElementById('notification');
+    const icon = notif.querySelector('.notification-icon');
+    const text = notif.querySelector('.notification-text');
+    
+    icon.textContent = isError ? '❌' : '✅';
+    text.textContent = message;
+    notif.classList.toggle('error', isError);
+    notif.classList.add('show');
+    
+    setTimeout(() => {
+      notif.classList.remove('show');
+    }, 4000);
+  }
+
+  // Check for success param
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('success') === '1') {
+    showNotification('🎉 APK analysis completed successfully!');
+    window.history.replaceState({}, '', '/reports');
+  }
+
+  // Animate stat numbers
+  function animateValue(element, start, end, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      element.textContent = Math.floor(start + range * easeProgress);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  document.querySelectorAll('.stat-value').forEach(el => {
+    const value = parseInt(el.textContent) || 0;
+    el.textContent = '0';
+    setTimeout(() => animateValue(el, 0, value, 1500), 300);
+  });
+</script>
+
+</body>
+</html>

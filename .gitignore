@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project Specific
+output/
+*.apk
+*.dex
+
+# Logs
+*.log
+logs/
+
+# Test Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Config (sensitive)
+research_config.yaml
+*_config_local.yaml
+*.env
+.env
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Compiled
+*.pyc
+*.pyo
+
+# Backup
+*.bak
+*~

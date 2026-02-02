@@ -1,0 +1,18 @@
+# XL Research Framework v2 - Configuration
+
+framework:
+  name: "XL Research Framework"
+  version: "2.0.0"
+
+jadx:
+  path: "C:\\Users\\Hype AMD\\OneDrive\\Desktop\\jadx-1.5.3\\bin\\jadx.bat"
+  timeout: 600
+
+output:
+  directory: "output"
+  reports_dir: "output/reports"
+  format: "text" # text, json, html
+
+memory:
+  max_mb: 1024
+  gc_threshold: 0.8
