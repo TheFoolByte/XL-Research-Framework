@@ -61,7 +61,7 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/yourrepo/xl-research-tools.git
+git https://github.com/TheFoolByte/XL-Research-Framework.git
 cd "XL Research Tools"
 
 # Create virtual environment
